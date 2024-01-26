@@ -1,3 +1,36 @@
+
+<script setup>
+import { ref } from "vue";
+const tasks = ref([
+  { name: "Task 1", time: 60 },
+  { name: "Task 2", time: 75 },
+  // Add more initial tasks if needed
+]);
+const isPopupVisible = ref(false);
+const newTaskName = ref("");
+const newTaskTime = ref(0);
+
+const showPopup = () => {
+  isPopupVisible.value = true;
+};
+
+const addTask = () => {
+  tasks.value.push({ name: newTaskName.value, time: newTaskTime.value });
+  resetForm();
+};
+
+const removeTask = (index) => {
+  tasks.value.splice(index, 1);
+};
+
+const resetForm = () => {
+  newTaskName.value = "";
+  newTaskTime.value = 0;
+  isPopupVisible.value = false;
+};
+</script>
+
+
 <template>
   <div>
     <div class="container py-5">
@@ -63,34 +96,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-const tasks = ref([
-  { name: "Task 1", time: 60 },
-  { name: "Task 2", time: 75 },
-  // Add more initial tasks if needed
-]);
-const isPopupVisible = ref(false);
-const newTaskName = ref("");
-const newTaskTime = ref(0);
-
-const showPopup = () => {
-  isPopupVisible.value = true;
-};
-
-const addTask = () => {
-  tasks.value.push({ name: newTaskName.value, time: newTaskTime.value });
-  resetForm();
-};
-
-const removeTask = (index) => {
-  tasks.value.splice(index, 1);
-};
-
-const resetForm = () => {
-  newTaskName.value = "";
-  newTaskTime.value = 0;
-  isPopupVisible.value = false;
-};
-</script>
